@@ -33,7 +33,7 @@ What are the core features that your program should have? These should be things
 4. Specifically, the logic behind Conways, Seeds, and Diamoeba, and the ability to switch between the three
 5. An update function to change the state of all cells at the same time interval
 6. a time global variable that updates every x amount of frames
-7. a alive cell count global variable and the corresponding update method
+7. an alive cell count global variable and the corresponding update method
 8. a dead cell count global variable and the corresponding update method
 
 ### Extra Features
@@ -73,15 +73,15 @@ What classes will you be creating for this project? Include the instance variabl
 
 CELL
 - Instance variables:
-  - Alive: State of a cell
+  - alive: State of a cell
   - neighborsAlive[]: Array for the states of all neighbors
 - METHODS
   - updateNeighborsAlive: Update the number of neighbors alive
 
 GRID
 - Instance variables:
-  - Height
-  - Width
+  - height
+  - width
   - cellSize
 - METHODS
   - updateCells: asks all cells to update
