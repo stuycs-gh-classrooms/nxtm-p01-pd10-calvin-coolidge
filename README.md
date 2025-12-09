@@ -90,3 +90,4 @@ GRID
   - updateCells: asks all cells to update
   - resetCells: kills all cells
   - resetCellsAlive: Alives all cells
+  - display: displays all cells
