@@ -75,8 +75,11 @@ CELL
 - Instance variables:
   - alive: State of a cell
   - neighborsAlive[]: Array for the states of all neighbors
+  - cellX: x coordinate of cell
+  - cellY: y coordinate of cell
 - METHODS
   - updateNeighborsAlive: Update the number of neighbors alive
+  - updateState: updates current cell status according to number of neighbors alive
 
 GRID
 - Instance variables:
@@ -87,3 +90,4 @@ GRID
   - updateCells: asks all cells to update
   - resetCells: kills all cells
   - resetCellsAlive: Alives all cells
+  - display: displays all cells
