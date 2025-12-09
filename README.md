@@ -75,6 +75,8 @@ CELL
 - Instance variables:
   - alive: State of a cell
   - neighborsAlive[]: Array for the states of all neighbors
+  - cellX: x coordinate of cell
+  - cellY: y coordinate of cell
 - METHODS
   - updateNeighborsAlive: Update the number of neighbors alive
 
