@@ -79,6 +79,7 @@ CELL
   - cellY: y coordinate of cell
 - METHODS
   - updateNeighborsAlive: Update the number of neighbors alive
+  - updateState: updates current cell status according to number of neighbors alive
 
 GRID
 - Instance variables:
