@@ -12,6 +12,7 @@ class Cell
     alive = true;
     size = cellSize;
     nearbyNeighbors = neighborsRing;
+    neighborsAlive = -1;
   }
 
   void display()
@@ -32,16 +33,36 @@ class Cell
       for (int col = 0; col < numCells; col++)
       {
         if (
-          ( cellGrid[row][col].cellX <= nearbyNeighbors ||
-            cellGrid[row][col].cellX >= -nearbyNeighbors ||
-            cellGrid[row][col].cellY <= nearbyNeighbors ||
-            cellGrid[row][col].cellY >= -nearbyNeighbors)
-            &&
-            cellGrid[row][col].alive)
+           ( cellGrid.grid[row][col].cellX <= this.cellX + (nearbyNeighbors * cellSize) ||
+             cellGrid.grid[row][col].cellX >= this.cellX - (nearbyNeighbors * cellSize) ||
+             cellGrid.grid[row][col].cellY <= this.cellY + (nearbyNeighbors * cellSize) ||
+             cellGrid.grid[row][col].cellY >= this.cellY - (nearbyNeighbors * cellSize))
+             &&
+             cellGrid.grid[row][col].alive)
         {
           neighborsAlive++;
         }
       }
+    }
+  }
+  
+  void conwayGameOfLife()
+  {
+    if (neighborsAlive < 2 && alive == true)
+    {
+      alive = false;
+    }
+    if (neighborsAlive > 3 && alive == true)
+    {
+      alive = false;
+    }
+    if (neighborsAlive == 3 && alive == false)
+    {
+      alive = true;
+    }
+    if ((neighborsAlive == 2 || neighborsAlive == 3) && alive == true)
+    {
+      alive = true;
     }
   }
 }

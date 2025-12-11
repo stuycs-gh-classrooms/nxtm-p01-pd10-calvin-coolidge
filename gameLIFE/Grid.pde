@@ -34,4 +34,26 @@ class Grid
       }
     }
   }
+  
+  void updateCells()
+  {
+    for (int row = 0; row < gridHeight; row++)
+    {
+      for (int col = 0; col < gridLength; col++)
+      {
+        grid[row][col].updateNeighborsAlive();
+      }
+    }
+  }
+  
+  void applyConway()
+  {
+    for (int row = 0; row < gridHeight; row++)
+    {
+      for (int col = 0; col < gridLength; col++)
+      {
+        grid[row][col].conwayGameOfLife();
+      }
+    }
+  }
 }
