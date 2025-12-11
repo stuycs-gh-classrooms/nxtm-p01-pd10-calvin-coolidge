@@ -1,13 +1,14 @@
 int numCells; // per row/column
 int cellSize;
 int neighborsRing;
-boolean playing = false;
+boolean playing = true;
 Grid cellGrid;
 
 void setup()
 {
   numCells = 50;
-  neighborsRing = 1;
+  frameRate(60);
+  neighborsRing = 2;
   size(500, 500);
   cellSize = (height / numCells);
   cellGrid = new Grid();
@@ -16,13 +17,17 @@ void setup()
 
 void draw()
 {
-  if (playing)
+  if (playing && (frameCount % 60 == 0))
   {
     background(0);
-    cellGrid.display();
     cellGrid.updateCells();
     cellGrid.applyConway();
+    cellGrid.simultUpdate();
+    cellGrid.display();
+    println(cellGrid.grid[1][1].alive);
   }
+  // println(cellGrid.grid[1][1].alive);
+  // println(frameCount);
 }
 
 void mouseReleased()

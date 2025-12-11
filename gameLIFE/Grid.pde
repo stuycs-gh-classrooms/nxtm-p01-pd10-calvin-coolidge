@@ -56,4 +56,15 @@ class Grid
       }
     }
   }
+  
+  void simultUpdate()
+  {
+    for (int row = 0; row < gridHeight; row++)
+    {
+      for (int col = 0; col < gridLength; col++)
+      {
+        grid[row][col].simultUpdate();
+      }
+    }
+  }
 }

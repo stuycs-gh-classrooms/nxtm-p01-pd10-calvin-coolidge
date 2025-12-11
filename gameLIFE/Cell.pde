@@ -2,6 +2,7 @@ class Cell
 {
   int size;
   boolean alive;
+  boolean nextAlive;
   int cellX;
   int cellY;
   int nearbyNeighbors;
@@ -20,8 +21,10 @@ class Cell
     if (alive == true)
     {
       fill(255);
+      // println("I just set it to white");
     } else {
       fill(0);
+      // println("I just set it to black");
     }
     square(cellX, cellY, size);
   }
@@ -33,12 +36,11 @@ class Cell
       for (int col = 0; col < numCells; col++)
       {
         if (
-           ( cellGrid.grid[row][col].cellX <= this.cellX + (nearbyNeighbors * cellSize) ||
-             cellGrid.grid[row][col].cellX >= this.cellX - (nearbyNeighbors * cellSize) ||
-             cellGrid.grid[row][col].cellY <= this.cellY + (nearbyNeighbors * cellSize) ||
-             cellGrid.grid[row][col].cellY >= this.cellY - (nearbyNeighbors * cellSize))
-             &&
-             cellGrid.grid[row][col].alive)
+           ( cellGrid.grid[row][col].cellX <= this.cellX + (nearbyNeighbors * cellSize) &&
+             cellGrid.grid[row][col].cellX >= this.cellX - (nearbyNeighbors * cellSize) &&
+             cellGrid.grid[row][col].cellY <= this.cellY + (nearbyNeighbors * cellSize) &&
+             cellGrid.grid[row][col].cellY >= this.cellY - (nearbyNeighbors * cellSize) &&
+             cellGrid.grid[row][col].alive))
         {
           neighborsAlive++;
         }
@@ -50,19 +52,24 @@ class Cell
   {
     if (neighborsAlive < 2 && alive == true)
     {
-      alive = false;
+      nextAlive = false;
     }
     if (neighborsAlive > 3 && alive == true)
     {
-      alive = false;
+      nextAlive = false;
     }
     if (neighborsAlive == 3 && alive == false)
     {
-      alive = true;
+      nextAlive = true;
     }
     if ((neighborsAlive == 2 || neighborsAlive == 3) && alive == true)
     {
-      alive = true;
+      nextAlive = true;
     }
+  }
+  
+  void simultUpdate()
+  {
+    alive = nextAlive;
   }
 }
