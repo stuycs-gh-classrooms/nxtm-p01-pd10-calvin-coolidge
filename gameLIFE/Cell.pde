@@ -7,6 +7,7 @@ class Cell
   int cellY;
   int nearbyNeighbors;
   int neighborsAlive;
+  boolean[] neighborsStates8;
 
   Cell()
   {
@@ -14,6 +15,7 @@ class Cell
     size = cellSize;
     nearbyNeighbors = neighborsRing;
     neighborsAlive = 0;
+    neighborsStates8 = new boolean[8];
   }
 
   void display()
@@ -50,6 +52,13 @@ class Cell
     }
   }
   
+  void updateNeighbors8Array()
+  {
+    // neighborsStates8[0] = cellGrid.grid[];
+  }
+  
+  
+  
   void conwayGameOfLife()
   {
     if (neighborsAlive < 2 && alive == true)
@@ -67,6 +76,14 @@ class Cell
     if ((neighborsAlive == 2 || neighborsAlive == 3) && alive == true)
     {
       nextAlive = true;
+    }
+  }
+  
+  void seedsLife()
+  {
+    if (alive = false && neighborsAlive == 2)
+    {
+      alive = true;
     }
   }
   
