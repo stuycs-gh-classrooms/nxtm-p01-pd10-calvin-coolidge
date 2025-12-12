@@ -1,7 +1,7 @@
 int numCells; // per row/column
 int cellSize;
 int neighborsRing;
-boolean playing = true;
+boolean playing = false;
 Grid cellGrid;
 
 void setup()
@@ -13,18 +13,19 @@ void setup()
   cellSize = (height / numCells);
   cellGrid = new Grid();
   cellGrid.resetCells();
+  cellGrid.display();
 }
 
 void draw()
 {
-  if (playing && (frameCount % 60 == 0))
+  if (playing && (frameCount % 30 == 0))
   {
     background(0);
     cellGrid.updateCells();
     cellGrid.applyConway();
     cellGrid.simultUpdate();
     cellGrid.display();
-    println(cellGrid.grid[1][1].alive);
+ // println(cellGrid.grid[1][1].alive);
   }
   // println(cellGrid.grid[1][1].alive);
   // println(frameCount);
@@ -35,9 +36,10 @@ void mouseReleased()
   int col = mouseX / cellSize;
   int row = mouseY / cellSize;
   cellGrid.grid[row][col].alive = true;
-  cellGrid.grid[row][col + 1].alive = true;
-  cellGrid.grid[row + 1][col].alive = true;
-  cellGrid.grid[row + 1][col + 1].alive = true;
+  // cellGrid.grid[row][col + 1].alive = true;
+  // cellGrid.grid[row + 1][col].alive = true;
+  // cellGrid.grid[row + 1][col + 1].alive = true;
+  cellGrid.display();
 }
 
 void keyPressed()
@@ -45,5 +47,15 @@ void keyPressed()
   if (key == 'a')
   {
     playing = !playing;
+  }
+  if (key == 'r')
+  {
+    cellGrid.randomizeCells(30);
+    cellGrid.display();
+  }
+  if (key == '1')
+  {
+    cellGrid.resetCells();
+    cellGrid.display();
   }
 }

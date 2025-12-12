@@ -10,10 +10,10 @@ class Cell
 
   Cell()
   {
-    alive = true;
+    alive = false;
     size = cellSize;
     nearbyNeighbors = neighborsRing;
-    neighborsAlive = -1;
+    neighborsAlive = 0;
   }
 
   void display()
@@ -31,6 +31,7 @@ class Cell
 
   void updateNeighborsAlive()
   {
+    neighborsAlive = 0;
     for (int row = 0; row < numCells; row++)
     {
       for (int col = 0; col < numCells; col++)
@@ -40,6 +41,7 @@ class Cell
              cellGrid.grid[row][col].cellX >= this.cellX - (nearbyNeighbors * cellSize) &&
              cellGrid.grid[row][col].cellY <= this.cellY + (nearbyNeighbors * cellSize) &&
              cellGrid.grid[row][col].cellY >= this.cellY - (nearbyNeighbors * cellSize) &&
+             cellGrid.grid[row][col] != this &&
              cellGrid.grid[row][col].alive))
         {
           neighborsAlive++;
