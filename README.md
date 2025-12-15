@@ -1,6 +1,7 @@
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/Mfyqb_T6)
 # NeXtCS Project 01
-### thinker0: FRIST LSAT
-### thinker1: FRIST LSAT
+### thinker0: Justin Luo
+### thinker1: not applicable :(
 ---
 
 ### Overview
@@ -21,50 +22,72 @@ The first phase will be to work on this document.
 
 ## Phase 0: Selection, Analysis & Plan
 
-#### Selected Project: CHOOSE WISELY
+#### Selected Project: game of LIFE
 
 ### Necessary Features
 What are the core features that your program should have? These should be things that __must__ be implemented in order to make the program useable/playable, not extra features that could be added to make the program more interesting/fun.
 
-YOUR ANSWERS HERE
+1. The grid of cells
+2. The methods to change cells from dead to alive and vice versa
+3. The logic behind whether a cell becomes dead or alive.
+4. Specifically, the logic behind Conways, Seeds, and Diamoeba, and the ability to switch between the three
+5. An update function to change the state of all cells at the same time interval
+6. a time global variable that updates every x amount of frames
+7. an alive cell count global variable and the corresponding update method
+8. a dead cell count global variable and the corresponding update method
 
 ### Extra Features
 What are some features that are not essential to the program, but you would like to see (provided you have time after completing the necessary features. Theses can be customizations that are not part of the core requirements.
 
-YOUR ANSWERS HERE
+1. The ability to alter the state of a cell on click
+2. The ability to save a state and load it later.
+3. A set of pre-made sets of cool states.
+4. Change from neighbors4 to neighbors8 or even neighborsN if i have time
 
 ### Array Usage
 How will you be using arrays in this project?
 
 1D Array:
-- YOUR ANSER HERE
+- Using it in the cells to store the state of neighbors
 
 2D Array:
-- YOUR ANSWER HERE
+- Initializing the grid
 
 
 ### Controls
 How will your program be controlled? List all keyboard commands and mouse interactions.
 
 Keyboard Commands:
-- LIST OF COMMANDS HERE
+- Space to pause
+- d to kill everything
+- a to make everything alive
+- r to randomize the states of all cells
 
 Mouse Control:
-- Mouse movement:
-- Mouse pressed:
+- Mouse movement: Nothing
+- Mouse pressed: reverse the state of a cell from dead to alive or alive to dead
 
 
 ### Classes
 What classes will you be creating for this project? Include the instance variables and methods that you believe you will need. You will be required to create at least 2 different classes. If you are going to use classes similar to those we've made for previous assignments, you will have to add new features to them.
 
-CLASS NAME0
+CELL
 - Instance variables:
-  - LIST INSTANCE VARS HERE
+  - alive: State of a cell
+  - neighborsAlive[]: Array for the states of all neighbors
+  - cellX: x coordinate of cell
+  - cellY: y coordinate of cell
 - METHODS
-  - LIST METHODS HERE
+  - updateNeighborsAlive: Update the number of neighbors alive
+  - updateState: updates current cell status according to number of neighbors alive
 
-CLASS NAME1
+GRID
 - Instance variables:
-  - LIST INSTANCE VARS HERE
+  - height
+  - width
+  - cellSize
 - METHODS
-  - LIST METHODS HERE
+  - updateCells: asks all cells to update
+  - resetCells: kills all cells
+  - resetCellsAlive: Alives all cells
+  - display: displays all cells

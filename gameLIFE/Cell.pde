@@ -1,0 +1,113 @@
+class Cell
+{
+  int size;
+  boolean alive;
+  boolean nextAlive;
+  int cellX;
+  int cellY;
+  int cellRow;
+  int cellCol;
+  int nearbyNeighbors;
+  int neighborsAlive;
+  boolean[] neighborsStates8;
+
+  Cell()
+  {
+    alive = false;
+    size = cellSize;
+    nearbyNeighbors = neighborsRing;
+    neighborsAlive = 0;
+    neighborsStates8 = new boolean[8];
+  }
+
+  void display()
+  {
+    if (alive == true)
+    {
+      fill(255);
+      // println("I just set it to white");
+    } else {
+      fill(0);
+      // println("I just set it to black");
+    }
+    square(cellX, cellY, size);
+  }
+
+  void updateNeighborsAlive()
+  {
+    // I think my design of this function was absolutely GENIUS.
+    // There's no null checks necessary, and the range of counting neighbors can be expanded at ANY time necessary.
+    // In future, assignments, I will DEFINITELY be reusing this code if possible.
+    neighborsAlive = 0;
+    for (int row = 0; row < numCells; row++)
+    {
+      for (int col = 0; col < numCells; col++)
+      {
+        if (
+          ( cellGrid.grid[row][col].cellRow >= this.cellRow - nearbyNeighbors &&
+            cellGrid.grid[row][col].cellRow <= this.cellRow + nearbyNeighbors &&
+            cellGrid.grid[row][col].cellCol >= this.cellCol - nearbyNeighbors &&
+            cellGrid.grid[row][col].cellCol <= this.cellCol + nearbyNeighbors &&
+            cellGrid.grid[row][col] != this &&
+            cellGrid.grid[row][col].alive))
+        {
+          neighborsAlive++;
+        }
+      }
+    }
+  }
+
+  void conwayGameOfLife()
+  {
+    if (neighborsAlive < 2 && alive == true)
+    {
+      nextAlive = false;
+    }
+    if (neighborsAlive > 3 && alive == true)
+    {
+      nextAlive = false;
+    }
+    if (neighborsAlive == 3 && alive == false)
+    {
+      nextAlive = true;
+    }
+    if ((neighborsAlive == 2 || neighborsAlive == 3) && alive == true)
+    {
+      nextAlive = true;
+    }
+  }
+
+  void seedsLife()
+  {
+    nextAlive = false;
+    if (alive == true)
+    {
+      nextAlive = false;
+    }
+    if (alive == false && neighborsAlive == 2)
+    {
+      nextAlive = true;
+    }
+  }
+
+  void highLife()
+  {
+    if (alive == false && (neighborsAlive == 3 || neighborsAlive == 6))
+    {
+      nextAlive = true;
+    }
+    else if (alive == true && (neighborsAlive == 2 || neighborsAlive == 3))
+    {
+      nextAlive = true;
+    }
+    else
+    {
+      nextAlive = false;
+    }
+  }
+
+  void simultUpdate()
+  {
+    alive = nextAlive; // updates all cells simulatenously
+  }
+}
