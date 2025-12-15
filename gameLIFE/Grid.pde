@@ -35,8 +35,7 @@ class Grid
         if (r <= percentage)
         {
           grid[row][col].alive = true;
-        }
-        else
+        } else
         {
           grid[row][col].alive = false;
         }
@@ -75,6 +74,28 @@ class Grid
       for (int col = 0; col < gridLength; col++)
       {
         grid[row][col].conwayGameOfLife();
+      }
+    }
+  }
+  
+  void applySeedsLife()
+  {
+    for (int row = 0; row < gridHeight; row++)
+    {
+      for (int col = 0; col < gridLength; col++)
+      {
+        grid[row][col].seedsLife();
+      }
+    }
+  }
+  
+  void applyHighLife()
+  {
+    for (int row = 0; row < gridHeight; row++)
+    {
+      for (int col = 0; col < gridLength; col++)
+      {
+        grid[row][col].highLife();
       }
     }
   }

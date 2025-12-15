@@ -39,26 +39,19 @@ class Cell
       for (int col = 0; col < numCells; col++)
       {
         if (
-           ( cellGrid.grid[row][col].cellX <= this.cellX + (nearbyNeighbors * cellSize) &&
-             cellGrid.grid[row][col].cellX >= this.cellX - (nearbyNeighbors * cellSize) &&
-             cellGrid.grid[row][col].cellY <= this.cellY + (nearbyNeighbors * cellSize) &&
-             cellGrid.grid[row][col].cellY >= this.cellY - (nearbyNeighbors * cellSize) &&
-             cellGrid.grid[row][col] != this &&
-             cellGrid.grid[row][col].alive))
+          ( cellGrid.grid[row][col].cellX <= this.cellX + (nearbyNeighbors * cellSize) &&
+          cellGrid.grid[row][col].cellX >= this.cellX - (nearbyNeighbors * cellSize) &&
+          cellGrid.grid[row][col].cellY <= this.cellY + (nearbyNeighbors * cellSize) &&
+          cellGrid.grid[row][col].cellY >= this.cellY - (nearbyNeighbors * cellSize) &&
+          cellGrid.grid[row][col] != this &&
+          cellGrid.grid[row][col].alive))
         {
           neighborsAlive++;
         }
       }
     }
   }
-  
-  void updateNeighbors8Array()
-  {
-    // neighborsStates8[0] = cellGrid.grid[];
-  }
-  
-  
-  
+
   void conwayGameOfLife()
   {
     if (neighborsAlive < 2 && alive == true)
@@ -78,15 +71,35 @@ class Cell
       nextAlive = true;
     }
   }
-  
+
   void seedsLife()
   {
-    if (alive = false && neighborsAlive == 2)
+    if (alive == true)
     {
-      alive = true;
+      nextAlive = false;
+    }
+    if (alive == false && neighborsAlive == 2)
+    {
+      nextAlive = true;
     }
   }
-  
+
+  void highLife()
+  {
+    if (alive == false && (neighborsAlive == 3 || neighborsAlive == 6))
+    {
+      nextAlive = true;
+    }
+    else if (alive == true && (neighborsAlive == 2 || neighborsAlive == 3))
+    {
+      nextAlive = true;
+    }
+    else
+    {
+      nextAlive = false;
+    }
+  }
+
   void simultUpdate()
   {
     alive = nextAlive;
