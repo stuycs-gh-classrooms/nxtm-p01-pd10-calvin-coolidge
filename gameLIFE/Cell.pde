@@ -5,6 +5,8 @@ class Cell
   boolean nextAlive;
   int cellX;
   int cellY;
+  int cellRow;
+  int cellCol;
   int nearbyNeighbors;
   int neighborsAlive;
   boolean[] neighborsStates8;
@@ -33,18 +35,21 @@ class Cell
 
   void updateNeighborsAlive()
   {
+    // I think my design of this function was absolutely GENIUS.
+    // There's no null checks necessary, and the range of counting neighbors can be expanded at ANY time necessary.
+    // In future, assignments, I will DEFINITELY be reusing this code if possible.
     neighborsAlive = 0;
     for (int row = 0; row < numCells; row++)
     {
       for (int col = 0; col < numCells; col++)
       {
         if (
-          ( cellGrid.grid[row][col].cellX <= this.cellX + (nearbyNeighbors * cellSize) &&
-          cellGrid.grid[row][col].cellX >= this.cellX - (nearbyNeighbors * cellSize) &&
-          cellGrid.grid[row][col].cellY <= this.cellY + (nearbyNeighbors * cellSize) &&
-          cellGrid.grid[row][col].cellY >= this.cellY - (nearbyNeighbors * cellSize) &&
-          cellGrid.grid[row][col] != this &&
-          cellGrid.grid[row][col].alive))
+          ( cellGrid.grid[row][col].cellRow >= this.cellRow - nearbyNeighbors &&
+            cellGrid.grid[row][col].cellRow <= this.cellRow + nearbyNeighbors &&
+            cellGrid.grid[row][col].cellCol >= this.cellCol - nearbyNeighbors &&
+            cellGrid.grid[row][col].cellCol <= this.cellCol + nearbyNeighbors &&
+            cellGrid.grid[row][col] != this &&
+            cellGrid.grid[row][col].alive))
         {
           neighborsAlive++;
         }
@@ -74,6 +79,7 @@ class Cell
 
   void seedsLife()
   {
+    nextAlive = false;
     if (alive == true)
     {
       nextAlive = false;
@@ -102,6 +108,6 @@ class Cell
 
   void simultUpdate()
   {
-    alive = nextAlive;
+    alive = nextAlive; // updates all cells simulatenously
   }
 }

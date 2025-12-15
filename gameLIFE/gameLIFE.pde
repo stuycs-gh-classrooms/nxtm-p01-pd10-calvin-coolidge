@@ -22,6 +22,7 @@ void setup()
   println("Anyways, press 'a' to start, 'f' to clear, 'r' to randomize all cells, and 't' to reset the generation count.");
   println("'z', 'x', and 'c' change the mode to Conway's, Seeds, and Highlife respectively, with Conway's  being the default loaded up.");
   println("Each different mode has three presets, each accessible within their respective modes with the '1', '2', and '3' hotkeys respectively.");
+  println("Highlife and Conway are very similar, so some patterns will work the same in both.");
   println("I'll let you figure out what configurations are in which mode.");
   println("Have fun!");
 }
@@ -125,7 +126,7 @@ void keyPressed()
   }
 
   if (mode == 0 && key == '2')
-{
+  {
     cellGrid.resetCells();
     cellGrid.grid[10][10].alive = true;
     cellGrid.grid[10][11].alive = true;
@@ -139,7 +140,7 @@ void keyPressed()
 
     cellGrid.display();
     println("beacon");
-}
+  }
 
   if (mode == 0 && key == '3')
   {
@@ -156,12 +157,97 @@ void keyPressed()
     cellGrid.display();
     println("toad oscillator");
   }
+
+  if (mode == 1 && key == '1')
+  {
+    cellGrid.resetCells();
+    cellGrid.grid[25][25].alive = true;
+    cellGrid.grid[26][25].alive = true;
+    cellGrid.grid[25][26].alive = true;
+    cellGrid.grid[26][26].alive = true;
+    cellGrid.display();
+    println("diamond");
+  }
+
+  if (mode == 1 && key == '2')
+  {
+    cellGrid.resetCells();
+    cellGrid.grid[25][25].alive = true;
+    cellGrid.grid[27][24].alive = true;
+    cellGrid.grid[29][25].alive = true;
+    cellGrid.grid[29][26].alive = true;
+    cellGrid.display();
+    println("order to chaos");
+  }
+  
+  if (mode == 1 && key == '3')
+  {
+    cellGrid.resetCells();
+    cellGrid.grid[25][21].alive = true;
+    cellGrid.grid[25][23].alive = true;
+    cellGrid.grid[25][25].alive = true;
+    cellGrid.grid[25][27].alive = true;
+    cellGrid.grid[25][29].alive = true;
+    cellGrid.display();
+    println("slow expansion");
+  }
+  
+  if (mode == 2 && key == '1')
+  {
+    cellGrid.resetCells();
+    cellGrid.grid[25][25].alive = true;
+    cellGrid.grid[25][24].alive = true;
+    cellGrid.grid[25][23].alive = true;
+    cellGrid.grid[26][22].alive = true;
+    cellGrid.grid[26][25].alive = true;
+    cellGrid.grid[27][21].alive = true;
+    cellGrid.grid[27][25].alive = true;
+    cellGrid.grid[28][21].alive = true;
+    cellGrid.grid[28][24].alive = true;
+    cellGrid.grid[29][21].alive = true;
+    cellGrid.grid[29][22].alive = true;
+    cellGrid.grid[29][23].alive = true;
+    cellGrid.display();
+    println("replicator");
+  }
+  
+  if (mode == 2 && key == '2')
+  {
+    cellGrid.resetCells();
+    cellGrid.grid[25][25].alive = true;
+    cellGrid.grid[25][26].alive = true;
+    cellGrid.grid[25][27].alive = true;
+    cellGrid.grid[26][24].alive = true;
+    cellGrid.grid[27][24].alive = true;
+    cellGrid.grid[28][24].alive = true;
+    
+    cellGrid.grid[28][33].alive = true;
+    cellGrid.grid[29][33].alive = true;
+    cellGrid.grid[30][33].alive = true;
+    cellGrid.display();
+    println("bomber");
+  }
+  
+  if (mode == 2 && key == '3')
+  {
+    cellGrid.resetCells();
+    cellGrid.grid[25][25].alive = true;
+    cellGrid.grid[25][26].alive = true;
+    cellGrid.grid[25][27].alive = true;
+    cellGrid.grid[26][27].alive = true;
+    cellGrid.grid[28][25].alive = true;
+    cellGrid.grid[28][27].alive = true;
+    cellGrid.grid[29][26].alive = true;
+    cellGrid.grid[29][27].alive = true;
+    cellGrid.display();
+    println("p10, an oscillator that doesn't work in Conway");
+  }
 }
 
-  void generationDisplay()
-  {
-    textAlign(LEFT, TOP);
-    textSize(64);
-    fill(255);
-    text(generation, 0, 0);
-  }
+void generationDisplay()
+{
+  textAlign(LEFT, TOP);
+  textSize(64);
+  fill(255);
+  text(generation, 0, 0);
+}

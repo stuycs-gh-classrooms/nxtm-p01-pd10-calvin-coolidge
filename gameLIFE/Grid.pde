@@ -20,6 +20,8 @@ class Grid
         grid[row][col] = new Cell();
         grid[row][col].cellX = col * cellSize;
         grid[row][col].cellY = row * cellSize;
+        grid[row][col].cellRow = row;
+        grid[row][col].cellCol = col;
       }
     }
   }
@@ -31,7 +33,6 @@ class Grid
       for (int col = 0; col < gridLength; col++)
       {
         int r = (int)random(1, 101);
-        grid[row][col] = new Cell();
         if (r <= percentage)
         {
           grid[row][col].alive = true;
@@ -67,6 +68,7 @@ class Grid
     }
   }
 
+  // the following functions change the next state of all cells based on some set rules.
   void applyConway()
   {
     for (int row = 0; row < gridHeight; row++)
